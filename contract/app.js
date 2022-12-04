@@ -1,6 +1,7 @@
 const express = require('express')
 const cors = require('cors');
 const userRouter = require('./router/user')
+const adminRouter = require('./router/user_work')
 const joi = require('joi')
 const {expressjwt} = require('express-jwt')
 const config = require('./configue')
@@ -28,7 +29,7 @@ app.use(expressjwt({secret: config.jwtSecretKey,algorithms:['HS256']}).unless({p
 //错误信息发送中间件
 
 app.use('/api',userRouter)
-
+app.use(adminRouter)
 
 //定义错误级别中间件
 app.use((err, req, res, next)=>{
@@ -44,4 +45,3 @@ app.use((err, req, res, next)=>{
 app.listen(3007, ()=>{
     console.log('express server is running at http://127.0.0.1:3007')
 })
-
