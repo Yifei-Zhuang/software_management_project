@@ -1,5 +1,7 @@
 const joi = require('joi')
-
+const username = joi.string().alphanum().min(1).max(20).required()
+const phone = joi.string().length(11).required()
+const password = joi.string().pattern(/^[\S]{6,20}$/).required()
 const user_id = joi.required()
 const entry_id = joi.required()
 const edit_reason = joi.string().required()
@@ -57,4 +59,13 @@ exports.userLike_schema = {
         user_id,
         entry_id
     },
+}
+
+exports.userChange_schema = {
+    body : {
+        user_id,
+        username,
+        phone,
+        password
+    }
 }

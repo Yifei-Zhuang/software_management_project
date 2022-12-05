@@ -2,6 +2,7 @@ const express = require('express')
 const cors = require('cors');
 const userRouter = require('./router/user')
 const adminRouter = require('./router/user_work')
+const usergetRouter = require('./router/user_get')
 const joi = require('joi')
 const {expressjwt} = require('express-jwt')
 const config = require('./configue')
@@ -30,6 +31,7 @@ app.use(expressjwt({secret: config.jwtSecretKey,algorithms:['HS256']}).unless({p
 
 app.use('/api',userRouter)
 app.use(adminRouter)
+app.use(usergetRouter)
 
 //定义错误级别中间件
 app.use((err, req, res, next)=>{

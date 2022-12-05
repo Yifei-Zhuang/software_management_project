@@ -96,3 +96,15 @@ exports.userLike = (req, res) =>{
         else return res.cc('未知错误')
     })
 }
+
+//用户修改信息
+exports.userChange = (res, req) =>{
+    userinfo = res.body
+    sql = 'update user set ? where user_id = ?'
+    db.query(sql, [userinfo, userinfo.user_id],(err, results)=>{
+        if(err) return res.cc(err)
+        else if(results.affectedRows === 1)
+            return res.cc("success", 0)
+        else return res.cc('未知错误')
+    })
+}
