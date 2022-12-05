@@ -6,8 +6,8 @@ exports.userUpgrade = (req, res) =>{ //用户升级申请
     sql2 = 'insert into user_upgade_application set ?'
     db.query(sql1, upgradeinfo.user_id, (err, results)=>{
         if(err) return res.cc(err)
-        if(results.length === 0 || results.category !=='common')
-            return res.cc('用户无法申请!')
+        if(results.length === 0 || results[0].category !=="common")
+            return res.cc('用户无法申请')
         db.query(sql2,upgradeinfo,(err,results)=>{
             if(err) return res.cc(err)
             if(results.affectedRows===1)
@@ -40,21 +40,20 @@ exports.entryUpdate = (req, res) =>{//用户修改词条申请
 //审核升级
 exports.Examupgrade = (req, res) =>{
     const examinfo = req.body
-    sql = 'update entry_edit_application set states = ? where application_id = ?'
+    sql = 'update user_upgade_application set states = ? where application_id = ?'
     sql1 = "update user set category = 'expert' where user_id = ?"
     state = examinfo.accepted === 0 ? 'accepted' : 'rejected'
     db.query(sql,[state, examinfo.application_id], (err, results)=>{
         if(err) return res.cc(err)
         else if(results.affectedRows === 1)
         {
-            db.query(sql1, examinfo.user_id,(err, results)=>{
+            db.query(sql1, examinfo.user_id, (err, results)=>{
                 if(err) return res.cc(err)
-                else{
-                    if(results.affectedRows === 1)
-                        return res.cc('seccess',0)
-                }
+                if(results.affectedRows === 1)
+                    return res.cc('seccess',0)
+                else 
+                    return res.cc(results)
             })
-            return res.cc('未知错误')
         }
         else return res.cc('未知错误')
     })

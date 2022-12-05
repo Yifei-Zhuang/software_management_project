@@ -5,7 +5,7 @@ const router = express.Router()
 const userHandler = require('../router_handler/user_work')
 const expressJOI = require('@escook/express-joi')
 
-const {userupgrade_schema, entryupdate_schema,Examupgrade_schema} = require('../schema/user_work')
+const {userupgrade_schema, entryupdate_schema,Examupgrade_schema, Examedit_schema, userFavor_schema,userLike_schema} = require('../schema/user_work')
 //用户升级申请
 router.post('/userUpgrade',expressJOI(userupgrade_schema),userHandler.userUpgrade)
 //用户修改申请
