@@ -1,0 +1,99 @@
+请求返回值由两部分构成 status , message
+status = 0成功 1出错 message存数据或报错信息, 无返回数据message 存 'success'
+
+post 请求 ：
+/api/signup 用户注册
+{
+    username,
+    password,
+    phone,
+    category //非必填，默认为'common'
+},
+
+post 请求 ：
+/api/login 用户登录
+{
+    username,
+    password
+}
+返回token 解析token有用户id,name,category信息
+
+
+post 请求 ：
+/userUpgrade 用户升级申请
+{
+    user_id,
+    application_msg //申请说明
+}
+
+post 请求 ：
+/entryUpdate  用户修改词条申请(待修改先不要用)
+{
+    user_id,
+    entry_id,
+    edit_reason,
+    edit_detail
+}
+
+post 请求 ：
+/Examupgrade  管理员审核用户升级
+{
+    application_id,
+    user_id,
+    accepted // 0通过 1拒绝
+}
+
+post 请求 ：
+/Examedit  管理员审核修改意见
+{
+    application_id,
+    entry_id,
+    accepted // 0通过 1拒绝
+}
+
+post 请求 ：
+/userFavor  用户添加收藏
+{
+    user_id,
+    entry_id
+}
+
+post 请求 ：
+/userLike  用户添加喜欢
+{
+        user_id,
+        entry_id
+    }
+    
+post 请求 ：
+/userChange  用户修改个人信息
+{
+    user_id,
+    username,
+    phone,
+    password
+}
+
+get请求：
+/userMsg  获取用户信息
+{
+    user_id
+}
+
+get请求：
+/userFavor  获取用户收藏
+{
+    user_id
+}
+
+get请求：
+/userLike  获取用户喜欢
+{
+    user_id
+}
+
+get请求：
+/userHis  获取用户历史访问
+{
+    user_id
+}

@@ -19,5 +19,5 @@ router.post('/userFavor',expressJOI(userFavor_schema), userHandler.userFavor)
 //用户添加喜欢
 router.post('/userLike',expressJOI(userLike_schema), userHandler.userLike)
 //用户修改个人信息
-router.post('userChange',expressJOI(userChange_schema), userHandler.userChange)
+router.post('/userChange',expressJOI(userChange_schema), userHandler.userChange)
 module.exports = router
