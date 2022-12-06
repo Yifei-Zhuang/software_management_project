@@ -18,6 +18,31 @@ post 请求 ：
 }
 返回token 解析token有用户id,name,category信息
 
+get请求:
+/api/getEntry 获取词条信息
+{
+    entry_id,
+}
+
+get请求
+/api/getEntryList 获取词条列表
+{
+    begin: joi.number().min(0).required(),
+    end: joi.number().max(623).required()
+}
+
+get请求
+/getEntryLF 获取词条的收藏和like数量
+{
+    entry_id,
+}
+
+/get请求
+/getComment
+// 获取词条的所有评论
+{
+    entry_id,
+}
 
 post 请求 ：
 /userUpgrade 用户升级申请
@@ -124,4 +149,62 @@ get请求：
 /userHis  获取用户历史访问
 {
     user_id
+}
+
+
+/post请求：
+/addEntry 添加词条
+{
+    entry_name,
+    image_url,
+    aliass,
+    english_name,
+    medicinal_part,
+    morphology,
+    distributions,
+    harvests,
+    medicinal_part,
+    medicinal_properties,
+    nature_taste,
+    efficacy,
+    clinical_usage,
+    pharmacology,
+    chemical_components,
+    contraindications,
+    extension,
+}
+
+/get请求：删除词条
+/deleteEntry
+{
+    entry_id
+}
+/post请求 编辑词条
+/editEntry
+{
+    entry_id //注意和创建词条相比，这里多了一个id字段
+    entry_name,
+    image_url,
+    aliass,
+    english_name,
+    medicinal_part,
+    morphology,
+    distributions,
+    harvests,
+    medicinal_part,
+    medicinal_properties,
+    nature_taste,
+    efficacy,
+    clinical_usage,
+    pharmacology,
+    chemical_components,
+    contraindications,
+    extension,
+}
+/post请求 评论
+/doComment
+{
+    user_id,
+    entry_id,
+    comment_detail
 }
