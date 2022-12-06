@@ -56,9 +56,10 @@ create table if not exists sem.browsing_history (
 create table if not exists sem.comment (
     comment_id int auto_increment primary key,
     user_id int not null,
+    user_name longtext not null,
     entry_id int not null,
     pre_comment_id int default -1 null,
-    comment_detail int not null,
+    comment_detail longtext not null,
     constraint comment_entry_entry_id_fk foreign key (entry_id) references sem.entry (entry_id),
     constraint comment_user_id_fk foreign key (user_id) references sem.user (user_id)
 );
