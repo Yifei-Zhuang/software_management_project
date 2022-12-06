@@ -45,3 +45,14 @@ exports.Login = (req, res) =>{//用户登录
         })
     })
 }
+
+exports.Search = (req, res) =>{
+    const Searchinfo = req.body
+    sql = 'select * from entry where '+ Searchinfo.serch_kind + " like \'%?%\' "
+    db.query(sql, Searchinfo.serch_text, (err, results)=>{
+        if(err) return (err)
+        else{
+            return res.cc(results,0)
+        }
+    })
+}

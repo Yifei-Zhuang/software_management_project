@@ -69,3 +69,32 @@ exports.userChange_schema = {
         password
     }
 }
+
+// delLike_schema, delFavor_schema, delupGrade_schema, delEdit_schema
+exports.delLike_schema = {
+    body : {
+        user_id,
+        entry_id
+    },
+}
+
+exports.delFavor_schema = {
+    body : {
+        user_id,
+        entry_id
+    },
+}
+
+exports.delupGrade_schema = {
+    body : {
+        application_id,
+        user_id
+    },
+}
+
+exports.delEdit_schema = {
+    body : {
+        application_id,
+        user_id
+    },
+}

@@ -74,6 +74,34 @@ post 请求 ：
     password
 }
 
+post 请求 ：
+/delEdit  删除词条编辑申请
+{
+    application_id,
+    user_id
+}
+
+post 请求 ：
+/delLike  删除喜欢
+{
+    user_id,
+    entry_id
+}
+
+post 请求 ：
+/delFavor  删除收藏
+{
+    user_id,
+    entry_id
+}
+
+post 请求 ：
+/delupGrade  删除升级申请
+{
+    application_id,
+    user_id
+}
+
 get请求：
 /userMsg  获取用户信息
 {
