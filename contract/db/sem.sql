@@ -68,7 +68,37 @@ create table if not exists sem.entry_edit_application (
     user_id int not null,
     entry_id int not null,
     edit_reason longtext null,
-    edit_detail longtext not null,
+    -- 以下是要编辑的字段列表
+    -- 中药名
+    entry_name longtext not null,
+    -- 图像链接
+    image_url longtext,
+    -- 别名
+    aliass longtext,
+    -- 英文名
+    english_name longtext,
+    -- 药用部位
+    medicinal_part longtext,
+    -- 植物形态
+    morphology longtext,
+    -- 产地分布
+    distributions longtext,
+    -- 采收加工
+    harvests longtext,
+    -- 药材性状
+    medicinal_properties longtext,
+    -- 性味归经
+    nature_taste longtext,
+    -- 功效和作用
+    efficacy longtext,
+    -- 临床应用
+    clinical_usage longtext,
+    -- 药理研究
+    pharmacology longtext,
+    -- 化学成分
+    chemical_components longtext,
+    -- 使用禁忌
+    contraindications longtext,
     states enum ('accepted', 'pending', 'rejected') default 'pending' not null,
     constraint entry_edit_application_entry_entry_id_fk foreign key (entry_id) references sem.entry (entry_id),
     constraint entry_edit_application_user_user_id_fk foreign key (user_id) references sem.user (user_id)
