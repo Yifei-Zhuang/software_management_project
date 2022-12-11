@@ -53,3 +53,32 @@ exports.userHis = (req, res) =>{
                 })
     })
 }
+
+//获取升级申请列表
+exports.upgrade = (req, res) =>{
+    var sql = "select * from user_upgade_application where states = \'pending\'"
+    if(req.body.all === 1)
+        sql = 'select * from user_upgade_application '
+    db.query(sql, (err,results)=>{
+        if(err) return res.cc(err)
+        else
+            return res.send({
+                    status : 0,
+                    message : results
+                })
+    })
+}
+
+exports.edit = (req, res) =>{
+    var sql = "select * from entry_edit_application where states = \'pending\'"
+    if(req.body.all === 1)
+        sql = 'select * from entry_edit_application'
+    db.query(sql, (err,results)=>{
+        if(err) return res.cc(err)
+        else
+            return res.send({
+                    status : 0,
+                    message : results
+                })
+    })
+}

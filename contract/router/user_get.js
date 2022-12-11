@@ -14,5 +14,10 @@ router.get('/userFavor',userHandler.userFavor)
 router.get('/userLike',userHandler.userLike)
 //获取用户历史访问
 router.get('/userHis',userHandler.userHis)
+//获取申请列表
+router.get('/upgrade', userHandler.upgrade)
+//获取修改列表
+router.get('/edit', userHandler.upgrade)
+
 
 module.exports = router

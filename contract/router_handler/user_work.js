@@ -1,4 +1,5 @@
 const db = require('../db/index')
+const bcryotjs = require('bcryptjs')
 
 exports.userUpgrade = (req, res) =>{ //用户升级申请
     const upgradeinfo = req.body
@@ -85,32 +86,47 @@ exports.userFavor = (req, res) =>{
     db.query(sql, favorinfo, (err,results)=>{
         if(err) return res.cc(err)
         if(results.affectedRows === 1)
-            return ('success',0)
+            return res.cc('success',0)
         else return res.cc('未知错误')
     })
 }
 
 exports.userLike = (req, res) =>{
     const likeinfo = req.body
-    sql = 'insert into user_favorites set ?'
+    sql = 'insert into user_like set ?'
     db.query(sql, likeinfo, (err,results)=>{
+        console.log(results.affectedRows)
         if(err) return res.cc(err)
         if(results.affectedRows === 1)
-            return ('success',0)
-        else return res.cc('未知错误')
+            return res.cc('success',0)
+        else {
+            return res.cc('未知错误')
+        }
     })
 }
 
 //用户修改信息
 exports.userChange = (req, res) =>{
     userinfo = req.body
+    sql1 = 'select * from user where user_id = ? or username = ?'
     sql = 'update user set ? where user_id = ?'
-    db.query(sql, [userinfo, userinfo.user_id],(err, results)=>{
+    db.query(sql1, [userinfo.user_id, userinfo.username], (err,results)=>{
         if(err) return res.cc(err)
-        else if(results.affectedRows === 1)
-            return res.cc("success", 0)
-        else return res.cc('未知错误')
+        else if(results.length > 1)
+            return res.cc("用户名已存在")
+        else
+        {
+            if("password" in userinfo)
+                userinfo.password = bcryotjs.hashSync(userinfo.password, 10)
+                db.query(sql, [userinfo, userinfo.user_id],(err, results)=>{
+                    if(err) return res.cc(err)
+                    else if(results.affectedRows === 1)
+                        return res.cc("success", 0)
+                    else return res.cc('未知错误')
+                })
+        }
     })
+
 }
 
 //下面是删除

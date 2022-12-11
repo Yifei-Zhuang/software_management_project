@@ -151,6 +151,17 @@ get请求：
     user_id
 }
 
+get请求：
+/upgrade  获取升级申请列表
+{
+    all // 1获取全部，0获取待审核
+}
+
+get请求
+/edit  获取编辑申请列表
+{
+    all // 1获取全部，0获取待审核
+}
 
 /post请求：
 /addEntry 添加词条

@@ -19,4 +19,5 @@ router.get('/getEntryList', expressJOI(entry_get_entry_list_schema), entryHandle
 router.get('/getEntryLF', expressJOI(entry_get_like_favorite_entry_schema), entryHandler.getEntryLikeAndFavorite)
 router.get('/getComment', expressJOI(entry_get_comment_of_entry_schema), entryHandler.getComments)
 
+
 module.exports = router
