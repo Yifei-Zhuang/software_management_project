@@ -48,10 +48,11 @@ exports.Login = (req, res) =>{//用户登录
 
 exports.Search = (req, res) =>{
     const Searchinfo = req.body
-    sql = 'select * from entry where '+ Searchinfo.serch_kind + " like \'%?%\' "
-    db.query(sql, Searchinfo.serch_text, (err, results)=>{
-        if(err) return (err)
+    sql = 'select * from entry where '+ Searchinfo.serch_kind + " like ? "
+    db.query(sql, "%"+Searchinfo.serch_text+"%", (err, results)=>{
+        if(err) return res.cc(err)
         else{
+            console.log(results,sql)
             return res.cc(results,0)
         }
     })

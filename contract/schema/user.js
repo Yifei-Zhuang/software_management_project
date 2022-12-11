@@ -5,7 +5,7 @@ const password = joi.string().pattern(/^[\S]{6,20}$/).required()    //6-20位非
 const phone = joi.string().length(11).required()    //电话
 const category = joi.string().valid('common','expert','admin','')
 const serch_kind = joi.string().valid('entry_name','aliass','english_name','medicinal_part','morphology','distributions','harvests','medicinal_properties','nature_taste','efficacy','clinical_usage','pharmacology','chemical_components','contraindications','extension')
-const serch_text = joi.string()
+const serch_text = joi.required()
 //定义验证注册和登录表单数据的规则对象
 exports.reg_schema = {
     body:{
