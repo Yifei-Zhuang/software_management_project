@@ -219,3 +219,15 @@ get请求
     entry_id,
     comment_detail
 }
+/post请求，查询用户是否收藏了一个词条
+/isFavor
+{
+    user_id,
+    entry_id
+}
+/post请求，查询用户是否点赞了一个词条
+/isLike
+{
+    user_id,
+    entry_id
+}

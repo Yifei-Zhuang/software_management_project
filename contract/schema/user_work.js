@@ -13,7 +13,7 @@ const accepted = joi.required()
 
 //定义申请升级数据对象
 exports.userupgrade_schema = {
-    body:{
+    body: {
         user_id,
         application_msg
     },
@@ -21,7 +21,7 @@ exports.userupgrade_schema = {
 }
 //定义申请修改数据对象
 exports.entryupdate_schema = {
-    body:{
+    body: {
         user_id,
         entry_id,
         edit_reason,
@@ -31,7 +31,7 @@ exports.entryupdate_schema = {
 
 //审核
 exports.Examupgrade_schema = {
-    body :{
+    body: {
         application_id,
         user_id,
         accepted // 0通过 1拒绝
@@ -39,7 +39,7 @@ exports.Examupgrade_schema = {
 }
 
 exports.Examedit_schema = {
-    body :{
+    body: {
         application_id,
         entry_id,
         accepted
@@ -48,21 +48,34 @@ exports.Examedit_schema = {
 
 //用户收藏,喜欢
 exports.userFavor_schema = {
-    body :{
+    body: {
         user_id,
         entry_id
     },
 }
 
+exports.isFavor_schema = {
+    body: {
+        user_id,
+        entry_id
+    }
+}
+exports.isLike_schema = {
+    body: {
+        user_id,
+        entry_id
+    }
+}
+
 exports.userLike_schema = {
-    body : {
+    body: {
         user_id,
         entry_id
     },
 }
 
 exports.userChange_schema = {
-    body : {
+    body: {
         user_id,
         username,
         phone,
@@ -72,28 +85,28 @@ exports.userChange_schema = {
 
 // delLike_schema, delFavor_schema, delupGrade_schema, delEdit_schema
 exports.delLike_schema = {
-    body : {
+    body: {
         user_id,
         entry_id
     },
 }
 
 exports.delFavor_schema = {
-    body : {
+    body: {
         user_id,
         entry_id
     },
 }
 
 exports.delupGrade_schema = {
-    body : {
+    body: {
         application_id,
         user_id
     },
 }
 
 exports.delEdit_schema = {
-    body : {
+    body: {
         application_id,
         user_id
     },
