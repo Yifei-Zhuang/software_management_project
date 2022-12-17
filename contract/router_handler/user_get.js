@@ -112,9 +112,12 @@ exports.edit = (req, res) => {
     db.query(sql, (err, results) => {
         if (err) return res.cc(err)
         else
+        {
             return res.send({
                 status: 0,
                 message: results
             })
+        }
+            
     })
 }
