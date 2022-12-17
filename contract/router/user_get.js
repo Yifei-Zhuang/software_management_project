@@ -21,7 +21,7 @@ router.get('/userHis', userHandler.userHis)
 //获取申请列表
 router.get('/upgrade', userHandler.upgrade)
 //获取修改列表
-router.get('/edit', userHandler.upgrade)
+router.get('/edit', userHandler.edit)
 
 
 module.exports = router

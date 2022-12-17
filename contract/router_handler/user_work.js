@@ -76,7 +76,9 @@ exports.Examedit = (req, res) =>{
         if(err) return res.cc(err)
         else if(results.affectedRows === 1)
         {
-            db.query(sql2, examinfo.application_id, (err, results)=>{
+            if(state === 'accepted')
+            {
+                db.query(sql2, examinfo.application_id, (err, results)=>{
                 if(err) return res.cc(err)
                 else
                 {
@@ -88,11 +90,15 @@ exports.Examedit = (req, res) =>{
                         {
                             return res.cc('seccess',0)
                         }
+                        else
+                            return res.cc('wrong')
                     })
                 }
             })
+            }
+            else
+                return res.cc('success',0)
         }
-
         else return res.cc('未知错误')
     })
 }
