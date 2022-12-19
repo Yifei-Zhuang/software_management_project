@@ -15,7 +15,7 @@ router.post('/isFavor', expressJOI(isFavor_schema), userHandler.isFavor)
 //判断用户是否收点赞了指定的词条
 router.post('/isLike', expressJOI(isLike_schema), userHandler.isLike)
 //获取用户喜欢
-router.post('/userLike', userHandler.userLike)
+router.post('/getLike', userHandler.getLike)
 //获取用户历史访问
 router.post('/userHis', userHandler.userHis)
 //获取申请列表

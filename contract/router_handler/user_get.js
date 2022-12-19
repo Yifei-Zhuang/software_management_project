@@ -47,7 +47,7 @@ exports.isFavor = (req, res) => {
 
 
 
-exports.userLike = (req, res) => {
+exports.getLike = (req, res) => {
     const user = req.body
     sql = 'select * from user_like where user_id = ?'
     db.query(sql, user.user_id, (err, results) => {
