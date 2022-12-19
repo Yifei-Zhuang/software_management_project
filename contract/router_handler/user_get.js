@@ -17,7 +17,7 @@ exports.userMsg = (req, res) => {
 
 exports.userFavor = (req, res) => {
     const user = req.body
-    sql = 'select * from user_favorites where user_id = ?'
+    sql = 'select * from (entry,user_favorites) where entry.entry_id = user_favorites.entry_id and user_id = ?'
     db.query(sql, user.user_id, (err, results) => {
         if (err) return res.cc(err)
         else
@@ -79,7 +79,7 @@ exports.isLike = (req, res) => {
 
 exports.userHis = (req, res) => {
     const user = req.body
-    sql = 'select * from browsing_history where user_id = ?'
+    sql = 'select * from (entry,browsing_history) where entry.entry_id = browsing_history.entry_id and user_id = ?'
     db.query(sql, user.user_id, (err, results) => {
         if (err) return res.cc(err)
         else
