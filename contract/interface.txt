@@ -18,26 +18,26 @@ post 请求 ：
 }
 返回token 解析token有用户id,name,category信息
 
-get请求:
+post请求:
 /api/getEntry 获取词条信息
 {
     entry_id,
 }
 
-get请求
+post请求
 /api/getEntryList 获取词条列表
 {
     begin: joi.number().min(0).required(),
     end: joi.number().max(623).required()
 }
 
-get请求
+post请求
 /getEntryLF 获取词条的收藏和like数量
 {
     entry_id,
 }
 
-/get请求
+/post请求
 /getComment
 // 获取词条的所有评论
 {
@@ -126,37 +126,37 @@ post 请求 ：
     user_id
 }
 
-get请求：
+post请求：
 /userMsg  获取用户信息
 {
     user_id
 }
 
-get请求：
+post请求：
 /userFavor  获取用户收藏
 {
     user_id
 }
 
-get请求：
+post请求：
 /userLike  获取用户喜欢
 {
     user_id
 }
 
-get请求：
+post请求：
 /userHis  获取用户历史访问
 {
     user_id
 }
 
-get请求：
+post请求：
 /upgrade  获取升级申请列表
 {
     all // 1获取全部，0获取待审核
 }
 
-get请求
+post请求
 /edit  获取编辑申请列表
 {
     all // 1获取全部，0获取待审核
