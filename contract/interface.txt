@@ -184,7 +184,7 @@ post请求
     extension,
 }
 
-/get请求：删除词条
+/post请求：删除词条
 /deleteEntry
 {
     entry_id
@@ -231,12 +231,12 @@ post请求
     entry_id
 }
 //以下两个操作不需要token
-/get请求，查询用户用户名
+/post请求，查询用户用户名
 /api/userName
 {
     user_id
 }
-/get请求，查询词条名
+/post请求，查询词条名
 /api/getEntryName
 {
     entry_id
