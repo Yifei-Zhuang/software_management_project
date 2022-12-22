@@ -32,33 +32,45 @@ exports.addEntry = (req, res) => {
 }
 exports.deleteEntry = (req, res) => {
     const deleteEntry = req.body;
-    const sql = `delete from entry where entry_id = ?`
-    db.query(sql, [deleteEntry.entry_id], (err, result) => {
-        if (err) {
-            return res.status(500).cc(err)
-        }
-        else {
-            res.status(200).send({
-                status: 0,
-                message: "删除成功"
+    const entry_id = deleteEntry.entry_id;
+    db.query(`delete from browsing_history where entry_id = ?`, [entry_id], (err, result) => {
+        db.query(`delete from comment where  entry_id = ?`, [entry_id], (err, result) => {
+            db.query(`delete from entry_edit_application where  entry_id = ?`, [entry_id], (err, result) => {
+                db.query(`delete from user_favorites where  entry_id = ?`, [entry_id], (err, result) => {
+                    db.query(`delete from user_like where  entry_id = ?`, [entry_id], (err, result) => {
+                        const sql = `delete from entry where entry_id = ?`
+                        db.query(sql, [deleteEntry.entry_id], (err, result) => {
+                            if (err) {
+                                return res.status(500).cc(err)
+                            }
+                            else {
+                                res.status(200).send({
+                                    status: 0,
+                                    message: "删除成功"
+                                })
+                            }
+                        })
+                    })
+                })
             })
-        }
+        })
     })
+
 }
 exports.editEntry = (req, res) => {
     // 直接进行全文替换
     const editEntry = req.body;
     const sql = `update entry set entry_name = ?, image_url = ?, aliass = ?, english_name = ?, medicinal_part = ?, morphology = ?, distributions = ?, harvests = ?, medicinal_properties = ?, nature_taste = ?, efficacy = ?, clinical_usage = ?, pharmacology = ?, chemical_components = ?, contraindications = ? where entry_id = ?`
     db.query(sql, [editEntry.entry_name, editEntry.image_url ? editEntry.image_url : '', editEntry.aliass, editEntry.english_name, editEntry.medicinal_part, editEntry.morphology, editEntry.distributions
-    , editEntry.harvests, editEntry.medicinal_properties, editEntry.nature_taste, editEntry.efficacy, editEntry.clinical_usage, editEntry.pharmacology, editEntry.chemical_components, editEntry.contraindications, editEntry.entry_id], (err, result) => {
-        if (err) {
-            return res.status(400).cc(err);
-        }
-        else {
-            res.status(200).send({
-                status: 0,
-                message: "编辑成功"
-            })
-        }
-    })
+        , editEntry.harvests, editEntry.medicinal_properties, editEntry.nature_taste, editEntry.efficacy, editEntry.clinical_usage, editEntry.pharmacology, editEntry.chemical_components, editEntry.contraindications, editEntry.entry_id], (err, result) => {
+            if (err) {
+                return res.status(400).cc(err);
+            }
+            else {
+                res.status(200).send({
+                    status: 0,
+                    message: "编辑成功"
+                })
+            }
+        })
 }
