@@ -14,14 +14,14 @@ router.post('/login', expressJOI(login_schema), userHandler.Login)
 
 router.post('/Search', expressJOI(Search_schema), userHandler.Search)
 
-router.get('/getEntry', expressJOI(entry_get_single_entry_schema), entryHandler.getEntry)
+router.post('/getEntry', expressJOI(entry_get_single_entry_schema), entryHandler.getEntry)
+router.post('/getEntryList', expressJOI(entry_get_entry_list_schema), entryHandler.getEntryList)
+router.post('/getEntryLF', expressJOI(entry_get_like_favorite_entry_schema), entryHandler.getEntryLikeAndFavorite)
+router.post('/getComment', expressJOI(entry_get_comment_of_entry_schema), entryHandler.getComments)
 router.get('/getEntryName', expressJOI(entry_get_single_entry_schema), entryHandler.getEntryName)
 //获取用户名
 router.get('/userName', userHandler.userName)
 
-router.get('/getEntryList', expressJOI(entry_get_entry_list_schema), entryHandler.getEntryList)
-router.get('/getEntryLF', expressJOI(entry_get_like_favorite_entry_schema), entryHandler.getEntryLikeAndFavorite)
-router.get('/getComment', expressJOI(entry_get_comment_of_entry_schema), entryHandler.getComments)
 
 
 module.exports = router

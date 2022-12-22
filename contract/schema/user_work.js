@@ -4,8 +4,7 @@ const phone = joi.string().length(11).required()
 const password = joi.string().pattern(/^[\S]{6,20}$/).required()
 const user_id = joi.required()
 const entry_id = joi.required()
-const edit_reason = joi.string().required()
-const edit_detail = joi.string().required()
+const edit_reason = joi.required()
 const application_msg = joi.string().required()
 const application_id = joi.required()
 const accepted = joi.required()
@@ -24,8 +23,7 @@ exports.entryupdate_schema = {
     body: {
         user_id,
         entry_id,
-        edit_reason,
-        edit_detail
+        edit_reason
     },
 }
 

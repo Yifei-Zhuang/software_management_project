@@ -20,6 +20,7 @@ exports.userUpgrade = (req, res) =>{ //用户升级申请
 
 exports.entryUpdate = (req, res) =>{//用户修改词条申请
     const entryinfo = req.body
+    entryinfo.edit_reason = JSON.stringify(entryinfo.edit_reason)
     const sql1 = 'select * from entry where entry_id = ?'
     const sql2 = 'insert into entry_edit_application set ?'
     db.query(sql1, entryinfo.entry_id, (err, results)=>{
@@ -67,15 +68,37 @@ exports.Examupgrade = (req, res) =>{
 //这个通过之后怎么修改词条呢?存疑
 exports.Examedit = (req, res) =>{
     const examinfo = req.body
-    sql = 'update entry_edit_application set states = ? where application_id = ?'
+    var sql = 'update entry_edit_application set states = ? where application_id = ?'
+    var sql1 = 'update entry set ? where entry_id = ?'
+    var sql2 = 'select * from entry_edit_application where application_id = ?'
     state = examinfo.accepted === 0 ? 'accepted' : 'rejected'
     db.query(sql,[state, examinfo.application_id], (err, results)=>{
         if(err) return res.cc(err)
         else if(results.affectedRows === 1)
         {
-            return res.cc('seccess',0)
+            if(state === 'accepted')
+            {
+                db.query(sql2, examinfo.application_id, (err, results)=>{
+                if(err) return res.cc(err)
+                else
+                {
+                    var info = JSON.parse(results[0].edit_reason)
+                    var entry_id = results[0].entry_id
+                    db.query(sql1, [info, entry_id], (err,results)=>{
+                        if(err) return res.cc(err)
+                        else if(results.affectedRows === 1)
+                        {
+                            return res.cc('seccess',0)
+                        }
+                        else
+                            return res.cc('wrong')
+                    })
+                }
+            })
+            }
+            else
+                return res.cc('success',0)
         }
-
         else return res.cc('未知错误')
     })
 }

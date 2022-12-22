@@ -39,7 +39,7 @@ exports.Login = (req, res) => {//用户登录
         const tokenstr = Token.sign(user, configue.jwtSecretKey, { expiresIn: configue.expiresIn })
         res.send({
             status: 0,
-            messege: '登陆成功!',
+            messege: '登陆成功',
             token: 'Bearer ' + tokenstr
         })
     })
