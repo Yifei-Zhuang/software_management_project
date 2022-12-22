@@ -45,12 +45,18 @@ exports.Examedit_schema = {
 }
 
 //用户收藏,喜欢
-exports.userFavor_schema = {
+exports.addUserFavor_schema = {
     body: {
         user_id,
         entry_id
     },
 }
+exports.userFavor_schema = {
+    body: {
+        user_id
+    },
+}
+
 
 exports.isFavor_schema = {
     body: {

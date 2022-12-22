@@ -5,7 +5,7 @@ const router = express.Router()
 const userHandler = require('../router_handler/user_work')
 const expressJOI = require('@escook/express-joi')
 
-const { userupgrade_schema, entryupdate_schema, Examupgrade_schema, Examedit_schema, userFavor_schema, userLike_schema, userChange_schema, delLike_schema, delFavor_schema, delupGrade_schema, delEdit_schema } = require('../schema/user_work')
+const { userFavor_schema, userupgrade_schema, entryupdate_schema, Examupgrade_schema, Examedit_schema, addUserFavor_schema, userLike_schema, userChange_schema, delLike_schema, delFavor_schema, delupGrade_schema, delEdit_schema } = require('../schema/user_work')
 //用户升级申请
 router.post('/userUpgrade', expressJOI(userupgrade_schema), userHandler.userUpgrade)
 //用户修改申请
@@ -14,8 +14,10 @@ router.post('/entryUpdate', expressJOI(entryupdate_schema), userHandler.entryUpd
 router.post('/Examupgrade', expressJOI(Examupgrade_schema), userHandler.Examupgrade)
 //管理员审核修改意见
 router.post('/Examedit', expressJOI(Examedit_schema), userHandler.Examedit)
-//用户添加收藏
+//查询用户收藏
 router.post('/userFavor', expressJOI(userFavor_schema), userHandler.userFavor)
+//用户添加收藏
+router.post('/addUserFavor', expressJOI(addUserFavor_schema), userHandler.addUserFavor)
 //用户添加喜欢
 router.post('/userLike', expressJOI(userLike_schema), userHandler.userLike)
 //用户修改个人信息
