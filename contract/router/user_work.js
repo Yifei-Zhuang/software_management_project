@@ -14,8 +14,6 @@ router.post('/entryUpdate', expressJOI(entryupdate_schema), userHandler.entryUpd
 router.post('/Examupgrade', expressJOI(Examupgrade_schema), userHandler.Examupgrade)
 //管理员审核修改意见
 router.post('/Examedit', expressJOI(Examedit_schema), userHandler.Examedit)
-//查询用户收藏
-router.post('/userFavor', expressJOI(userFavor_schema), userHandler.userFavor)
 //用户添加收藏
 router.post('/addUserFavor', expressJOI(addUserFavor_schema), userHandler.addUserFavor)
 //用户添加喜欢

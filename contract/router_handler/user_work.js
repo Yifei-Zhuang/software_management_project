@@ -95,20 +95,6 @@ exports.Examedit = (req, res) => {
         else return res.cc('未知错误')
     })
 }
-exports.userFavor = (req, res) => {
-    const { user_id } = req.body;
-    const sql = `select entry_id from user_favorites where user_id = ${user_id}`
-    db.query(sql, [], (err, results) => {
-        if (err) return res.cc(err)
-        else {
-            res.status(200).send({
-                status: 0,
-                message: "获取成功",
-                data: results
-            })
-        }
-    })
-}
 exports.addUserFavor = (req, res) => {
     const favorinfo = req.body
     sql = 'insert into user_favorites set ?'

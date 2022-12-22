@@ -76,10 +76,17 @@ post 请求 ：
 }
 
 post 请求 ：
-/userFavor  用户添加收藏
+/addUserFavor  用户添加收藏
 {
     user_id,
     entry_id
+}
+
+
+post 请求 ：
+/userFavor  获取用户收藏
+{
+    user_id
 }
 
 post 请求 ：
@@ -132,11 +139,6 @@ post请求：
     user_id
 }
 
-post请求：
-/userFavor  获取用户收藏
-{
-    user_id
-}
 
 post请求：
 /userLike  获取用户喜欢

@@ -51,11 +51,6 @@ exports.addUserFavor_schema = {
         entry_id
     },
 }
-exports.userFavor_schema = {
-    body: {
-        user_id
-    },
-}
 
 
 exports.isFavor_schema = {
