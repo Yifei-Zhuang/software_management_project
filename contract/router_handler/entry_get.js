@@ -32,6 +32,22 @@ exports.getEntry = (req, res) => {
         }
     })
 }
+// 获取词条名
+exports.getEntryName = (req, res) => {
+    const entry_id = req.body.entry_id;
+    const sql = `select * from entry where entry_id = ?`
+    db.query(sql, [entry_id], (err, result) => {
+        if (err) {
+            return res.status(400).cc(err)
+        } else {
+            res.status(200).send({
+                status: 0,
+                message: "获取成功",
+                data: result[0].entry_name
+            })
+        }
+    })
+}
 // 获取词条列表
 exports.getEntryList = (req, res) => {
     const { begin, end } = req.body;

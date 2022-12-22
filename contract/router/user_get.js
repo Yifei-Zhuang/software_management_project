@@ -8,6 +8,7 @@ const expressJOI = require('@escook/express-joi')
 const { isFavor_schema, isLike_schema } = require('../schema/user_work')
 //获取用户信息
 router.get('/userMsg', userHandler.userMsg)
+
 //获取用户收藏
 router.get('/userFavor', userHandler.userFavor)
 //判断用户是否收藏了指定的词条
